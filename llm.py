@@ -1,4 +1,5 @@
 import urllib.request
+import re
 url = ("https://raw.githubusercontent.com/rasbt/"
 "LLMs-from-scratch/main/ch02/01_main-chapter-code/"
 "the-verdict.txt")
@@ -7,5 +8,8 @@ urllib.request.urlretrieve(url,file_path)
 
 with open("the-verdict.txt","r",encoding="utf-8") as f:
     raw_text = f.read()
-    print("Total", len(raw_text))
-    print(raw_text[:500])
+preprocessed = re.split(r'([,.?_!"()\']|--|\s)', raw_text)
+preprocessed = [item.strip() for item in preprocessed if item.strip()]
+
+all_words = sorted(set(preprocessed))
+vocab = {token:integer for integer,token in enumerate(all_words)}
