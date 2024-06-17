@@ -1,0 +1,14 @@
+Attribute,Synonyms
+product name,"product type, name"
+type,
+variety,
+region,country
+name,product name
+price,
+gender,
+product type,product name
+country,region
+cholestrol,cholestrol per value
+cholestrol per value,cholestrol
+sex,
+money,

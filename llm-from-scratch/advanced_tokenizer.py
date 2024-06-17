@@ -12,8 +12,10 @@ with open("the-verdict.txt","r",encoding="utf-8") as f:
 preprocessed = re.split(r'([,.?_!"()\']|--|\s)', raw_text)
 preprocessed = [item.strip() for item in preprocessed if item.strip()]
 
-all_words = sorted(set(preprocessed))
+all_words = sorted(list(set(preprocessed)))
+all_words.extend(["<|endoftext|>", "<|unk|>"])
 vocab = {token:integer for integer,token in enumerate(all_words)}
+print(len(vocab.items()))
 
 class SimpleTokenizerV1:
     def __init__(self,vocab):
@@ -31,7 +33,8 @@ class SimpleTokenizerV1:
 
 
 tokenizer = SimpleTokenizerV1(vocab)
-text = """"Hello, como estas"""
+text = """"It's the last he painted, you know,"
+Mrs. Gisburn said with pardonable pride."""
 ids = tokenizer.encode(text)
-print(ids)
-print(tokenizer.decode(ids))
+# print(ids)
+# print(tokenizer.decode(ids))
